@@ -35,3 +35,18 @@ fs.readFile('comments.js', 'utf8', (err, data) => {
         console.log('Server running at http://localhost:3000/');
     });
 });
+
+// Add the shell script to set the content of the file .github/steps/-step.txt to "5"
+const { exec } = require('child_process');
+
+exec('echo "5" > .github/steps/-step.txt', (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error setting content: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.error(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`Content set successfully.`);
+});
